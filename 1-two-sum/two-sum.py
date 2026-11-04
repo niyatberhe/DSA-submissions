@@ -1,8 +1,7 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for slow in range(len(nums)-1):
-            for fast in range(slow+1,len(nums)):
-                if nums[fast]+nums[slow]==target:
-                    return [slow,fast]
-        
-        return []
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        mapp={}
+        for idx, num in enumerate(nums):
+            if target-num in mapp:
+                return [mapp[target-num],idx]
+            mapp[num]=idx
