@@ -1,12 +1,10 @@
+from collections import defaultdict
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
-        count=dict()
+    def singleNumber(self, nums: list[int]) -> int:
+        counter=defaultdict(int)
         for num in nums:
-            if num in count:
-                count[num]+=1
-            else:
-                count[num]=1
+            counter[num]+=1
 
-        for num in count:
-            if count[num]==1:
+        for num in nums:
+            if counter[num]==1:
                 return num
