@@ -1,12 +1,8 @@
+from collections import Counter
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        freq=dict()
-        for num in nums:
-            if num in freq:
-                freq[num]+=1
-            else:
-                freq[num]=1
-
-        for num in freq:
-            if freq[num]>(len(nums)//2):
+    def majorityElement(self, nums: list[int]) -> int:
+        count_dict=Counter(nums)
+        for num in count_dict:
+            if count_dict[num]>len(nums)//2:
                 return num
+        
