@@ -1,14 +1,9 @@
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
-        freq=dict()
+    def containsDuplicate(self, nums: list[int]) -> bool:
+        seen=set()
         for num in nums:
-            if num in freq:
-                freq[num]+=1
-            else:
-                freq[num]=1
-
-        for num in freq:
-            if freq[num]>=2:
+            if num in seen:
                 return True
-                break
+            seen.add(num)
+
         return False
