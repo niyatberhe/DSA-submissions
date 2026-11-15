@@ -8,4 +8,5 @@ class Solution:
                 seen.add(nums[r])
                 nums[l]=nums[r]
                 l+=1
+
         return l
