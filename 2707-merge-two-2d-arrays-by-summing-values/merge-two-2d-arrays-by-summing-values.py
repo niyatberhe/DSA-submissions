@@ -1,25 +1,15 @@
 class Solution:
     def mergeArrays(self, nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int]]:
-        i=j=0
-        merged=[]
+        hashmap=defaultdict(int)
+        res=[]
+        for sublist in nums1:
+            hashmap[sublist[0]]+=sublist[1]
 
-        while i<len(nums1) and j<len(nums2):
-            if nums1[i][0]<nums2[j][0]:
-                merged.append(nums1[i])
-                i+=1
-            elif nums1[i][0]>nums2[j][0]:
-                merged.append(nums2[j])
-                j+=1
-            else:
-                merged.append([nums1[i][0],nums1[i][1]+nums2[j][1]])
-                i+=1
-                j+=1
+        for sublist in nums2:
+            hashmap[sublist[0]]+=sublist[1]
 
-        while i<len(nums1):
-            merged.append(nums1[i])
-            i+=1
-        while j<len(nums2):
-            merged.append(nums2[j])
-            j+=1
-        
-        return merged
+        hashmap=dict(sorted(hashmap.items()))
+        for key in hashmap:
+            res.append([key,hashmap[key]])
+
+        return res
