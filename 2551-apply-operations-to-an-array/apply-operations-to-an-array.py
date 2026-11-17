@@ -1,18 +1,18 @@
 class Solution:
-    def applyOperations(self, nums: List[int]) -> List[int]:
-        zero_arr=[]
-        not_zero_arr=[]
+    def applyOperations(self, nums: list[int]) -> list[int]:
         for i in range(len(nums)-1):
             if nums[i]==nums[i+1]:
                 nums[i]*=2
                 nums[i+1]=0
-            else:
-                continue
 
-        for j in nums:
-            if j==0:
-                zero_arr.append(j)
-            else:
-                not_zero_arr.append(j)
+        l=0
+        for r in range(len(nums)):
+            if nums[r]!=0:
+                nums[l]=nums[r]
+                l+=1
 
-        return not_zero_arr+zero_arr     
+        while l<len(nums):
+            nums[l]=0
+            l+=1
+
+        return nums
