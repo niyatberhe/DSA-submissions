@@ -4,24 +4,17 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        f,s=head,head
+    def isPalindrome(self, head: ListNode | None) -> bool:
+        lst=[]
+        cur=head
+        while cur:
+            lst.append(cur.val)
+            cur=cur.next
 
-        while f and f.next:
-            f=f.next.next
-            s=s.next
-
-        prev=None
-        while s:
-            temp=s.next
-            s.next=prev
-            prev,s=s,temp
-
-        l,r=head,prev
-        while r:
-            if l.val!=r.val:
+        l,r=0,len(lst)-1
+        while l<r:
+            if lst[l]!=lst[r]:
                 return False
-            l=l.next
-            r=r.next
-
+            l+=1
+            r-=1
         return True
