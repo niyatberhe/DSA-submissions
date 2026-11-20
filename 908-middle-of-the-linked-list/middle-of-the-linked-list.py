@@ -4,11 +4,17 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        slow,fast=head,head
+    def middleNode(self, head: ListNode | None) -> ListNode | None:
+        length=0
+        cur=head
+        while cur:
+            length+=1
+            cur=cur.next
 
-        while fast and fast.next:
-            slow=slow.next
-            fast=fast.next.next
+        mid=(length//2)
+        cur=head
+        while mid>0:
+            cur=cur.next
+            mid-=1
 
-        return slow
+        return cur
