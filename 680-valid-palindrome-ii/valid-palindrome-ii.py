@@ -1,13 +1,18 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        left,right=0,len(s)-1
+        def helperPalind(string):
+            l,r=0,len(string)-1
+            while l<r:
+                if string[l]!=string[r]:
+                    return False
+                l+=1
+                r-=1
+            return True
 
-        while left<right:
-            if s[left]!=s[right]:
-                left_skipped,right_skipped=s[left+1:right+1],s[left:right]
-                return (left_skipped==left_skipped[::-1] or right_skipped==right_skipped[::-1])
-            
-            left+=1
-            right-=1
-        
+        l,r=0,len(s)-1
+        while l<r:
+            if s[l]!=s[r]:
+                return helperPalind(s[l+1:r+1]) or helperPalind(s[l:r])
+            l+=1
+            r-=1
         return True
