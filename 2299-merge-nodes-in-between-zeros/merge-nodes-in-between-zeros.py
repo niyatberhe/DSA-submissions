@@ -4,18 +4,16 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        current=head
-        dumy=ListNode()
-        tail=dumy
-
-        while current.next:
-            sum_node=ListNode(0)
-            while current.next.val!=0:
-                sum_node.val+=current.next.val
-                current=current.next
-            tail.next=sum_node
-            tail=tail.next
-            current=current.next
-
-        return dumy.next
+    def mergeNodes(self, head: ListNode | None) -> ListNode | None:
+        dummy=ListNode(0)
+        new_cur,cur=dummy,head.next
+        while cur and cur.next:
+            mergesum=0
+            while cur.val!=0:
+                mergesum+=cur.val
+                cur=cur.next
+            new_cur.next=ListNode(mergesum)
+            cur=cur.next
+            new_cur=new_cur.next
+        
+        return dummy.next
